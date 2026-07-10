@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Importar{% endblock %}
+{% block content %}
+<h1>Importar lista</h1>
+<label for="raw" class="visually-hidden">Lista de presença</label>
+<textarea id="raw" rows="10" placeholder="Cole a lista de presença aqui..."></textarea>
+<button id="btn-parse">Processar lista</button>
+
+<div id="revisao" hidden>
+  <h2>Revisão</h2>
+  <div class="scroll">
+    <table id="tabela">
+      <thead><tr>
+        <th>Nome na lista</th><th>Status</th><th>Vincular a</th><th>Apelido?</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <button id="btn-apply">Aplicar presença</button>
+  <span id="apply-msg"></span>
+</div>
+{% endblock %}
+{% block script %}<script src="/static/importar.js"></script>{% endblock %}

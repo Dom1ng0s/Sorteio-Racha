@@ -1,0 +1,24 @@
+// Helpers de fetch compartilhados.
+async function api(method, url, body) {
+  const opt = { method, headers: { "Content-Type": "application/json" } };
+  if (body !== undefined) opt.body = JSON.stringify(body);
+  const r = await fetch(url, opt);
+  const data = r.status === 204 ? null : await r.json().catch(() => null);
+  if (!r.ok) throw Object.assign(new Error("erro"), { data, status: r.status });
+  return data;
+}
+const jget = (u) => api("GET", u);
+const jpost = (u, b) => api("POST", u, b);
+const jpatch = (u, b) => api("PATCH", u, b);
+const jdel = (u) => api("DELETE", u);
+
+const el = (tag, props = {}, ...kids) => {
+  const n = Object.assign(document.createElement(tag), props);
+  kids.flat().forEach((k) => n.append(k));
+  return n;
+};
+
+// marca o link de navegação da página atual
+document.querySelectorAll("nav a").forEach((a) => {
+  if (a.getAttribute("href") === location.pathname) a.setAttribute("aria-current", "page");
+});

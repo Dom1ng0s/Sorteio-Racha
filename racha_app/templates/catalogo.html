@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block content %}
+<h1>{{ titulo }}</h1>
+
+<div class="add-row">
+  <input id="novo-nome" placeholder="Nome do jogador" aria-label="Nome do novo jogador">
+  <select id="novo-stars" aria-label="Estrelas do novo jogador">
+    {% for s in range(1,7) %}<option value="{{ s }}" {% if s==3 %}selected{% endif %}>{{ s }}★</option>{% endfor %}
+  </select>
+  <button id="btn-add">Adicionar</button>
+</div>
+
+<label for="busca" class="visually-hidden">Buscar jogador</label>
+<input id="busca" type="search" placeholder="Buscar jogador..." autocomplete="off">
+
+<div class="scroll">
+  <table id="tabela">
+    <thead><tr><th>Pres.</th><th>Nome</th><th>Estrelas</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+<script>window.GRUPO = "{{ grupo }}";</script>
+{% endblock %}
+{% block script %}<script src="/static/catalogo.js"></script>{% endblock %}

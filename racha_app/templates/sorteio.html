@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Sortear{% endblock %}
+{% block content %}
+<h1>Sortear times</h1>
+<p><strong id="contador">0</strong> jogadores presentes.</p>
+
+<div class="field">
+  <label for="num-times">Nº de times</label>
+  <select id="num-times">
+    <option>2</option><option selected>3</option><option>4</option>
+  </select>
+</div>
+
+<div id="validacao"></div>
+<button id="btn-sortear" class="cta">Sortear Times</button>
+
+<div id="resultado"></div>
+{% endblock %}
+{% block script %}<script src="/static/sorteio.js"></script>{% endblock %}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Racha — {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <nav>
+    <span class="brand">Racha</span>
+    <a href="/importar">Importar</a>
+    <a href="/mensalistas">Mensalistas</a>
+    <a href="/diaristas">Diaristas</a>
+    <a href="/sorteio">Sortear</a>
+  </nav>
+  <main>{% block content %}{% endblock %}</main>
+  <script src="/static/app.js"></script>
+  {% block script %}{% endblock %}
+</body>
+</html>

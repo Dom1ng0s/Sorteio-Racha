@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+racha_app/racha.db
+racha.db
+.venv/
