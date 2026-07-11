@@ -4,8 +4,14 @@
 <h2>Entrar</h2>
 <form method="post" action="/login" class="stack">
   <input type="hidden" name="next" value="{{ next }}">
-  <input type="email" name="email" placeholder="E-mail" required autocomplete="email" autofocus>
-  <input type="password" name="password" placeholder="Senha" required autocomplete="current-password">
+  <div class="input-group">
+    <label class="label" for="email">E-mail</label>
+    <input class="input" id="email" type="email" name="email" required autocomplete="email" autofocus>
+  </div>
+  <div class="input-group">
+    <label class="label" for="password">Senha</label>
+    <input class="input" id="password" type="password" name="password" required autocomplete="current-password">
+  </div>
   <button type="submit">Entrar</button>
 </form>
 <p><a href="/forgot">Esqueci a senha</a></p>

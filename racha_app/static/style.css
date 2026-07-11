@@ -170,6 +170,21 @@ body.authpage { min-height: 100dvh; display: flex; align-items: center; justify-
 .authcard h2 { margin: .2rem 0 1rem; }
 .stack { display: flex; flex-direction: column; gap: .7rem; }
 .stack button { margin-top: .2rem; }
+
+/* campos de e-mail/senha — borda animada no hover/foco, temática */
+.input-group { display: flex; flex-direction: column; }
+.label {
+  margin-bottom: .3rem; font-size: .9rem; font-weight: bold; color: var(--muted);
+  transition: color .3s cubic-bezier(.25,.01,.25,1);
+}
+.input {
+  width: 100%; height: var(--tap); padding: 0 1rem; font-size: 1rem;
+  background: var(--surface-2); color: var(--text);
+  border: 2px solid transparent; border-radius: .5rem; min-height: auto;
+  transition: border-color .3s cubic-bezier(.25,.01,.25,1), color .3s cubic-bezier(.25,.01,.25,1), background .2s cubic-bezier(.25,.01,.25,1);
+}
+.input:hover, .input:focus, .input-group:hover .input { outline: none; border-color: var(--brand); }
+.input-group:hover .label, .input:focus { color: var(--text); }
 .hint { color: var(--muted); font-size: .85rem; }
 
 /* ---------- botão carregando ---------- */

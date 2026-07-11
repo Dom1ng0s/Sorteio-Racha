@@ -7,7 +7,10 @@
   <p><a href="/forgot">Pedir outro</a></p>
 {% else %}
   <form method="post" action="/reset/{{ token }}" class="stack">
-    <input type="password" name="password" placeholder="Nova senha (mín. 8)" required minlength="8" autocomplete="new-password" autofocus>
+    <div class="input-group">
+      <label class="label" for="password">Nova senha (mín. 8)</label>
+      <input class="input" id="password" type="password" name="password" required minlength="8" autocomplete="new-password" autofocus>
+    </div>
     <button type="submit">Salvar senha</button>
   </form>
 {% endif %}

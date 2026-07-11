@@ -4,8 +4,14 @@
 <h2>Criar conta</h2>
 <form method="post" action="/signup" class="stack">
   <input type="hidden" name="next" value="{{ next }}">
-  <input type="email" name="email" placeholder="E-mail" required autocomplete="email" autofocus>
-  <input type="password" name="password" placeholder="Senha (mín. 8)" required minlength="8" autocomplete="new-password">
+  <div class="input-group">
+    <label class="label" for="email">E-mail</label>
+    <input class="input" id="email" type="email" name="email" required autocomplete="email" autofocus>
+  </div>
+  <div class="input-group">
+    <label class="label" for="password">Senha (mín. 8)</label>
+    <input class="input" id="password" type="password" name="password" required minlength="8" autocomplete="new-password">
+  </div>
   <button type="submit">Criar conta</button>
 </form>
 <p>Já tem conta? <a href="/login{% if next %}?next={{ next }}{% endif %}">Entrar</a></p>

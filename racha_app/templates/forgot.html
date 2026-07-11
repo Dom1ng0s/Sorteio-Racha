@@ -7,7 +7,10 @@
   <p><a href="/login">Voltar</a></p>
 {% else %}
   <form method="post" action="/forgot" class="stack">
-    <input type="email" name="email" placeholder="E-mail" required autocomplete="email" autofocus>
+    <div class="input-group">
+      <label class="label" for="email">E-mail</label>
+      <input class="input" id="email" type="email" name="email" required autocomplete="email" autofocus>
+    </div>
     <button type="submit">Enviar link</button>
   </form>
   <p><a href="/login">Voltar</a></p>
