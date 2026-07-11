@@ -23,7 +23,8 @@ const el = (tag, props = {}, ...kids) => {
 function toast(msg, type = "erro") {
   let box = document.getElementById("toasts");
   if (!box) document.body.append((box = el("div", { id: "toasts" })));
-  const t = el("div", { className: "toast " + type, textContent: msg, role: "status" });
+  const t = el("div", { className: "toast " + type, textContent: msg,
+    role: type === "erro" ? "alert" : "status" });
   box.append(t);
   setTimeout(() => t.remove(), 4000);
 }

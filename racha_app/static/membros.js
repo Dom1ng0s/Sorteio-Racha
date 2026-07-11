@@ -28,6 +28,7 @@ async function load() {
   if (!d.invites.length) ul.append(el("li", { textContent: "(nenhum)", className: "hint" }));
   d.invites.forEach((inv) => {
     const x = el("button", { className: "danger tiny", textContent: "✕" });
+    x.setAttribute("aria-label", "Cancelar convite de " + inv.email);
     x.onclick = async () => { await jdel("/api/org/invites/" + inv.id); load(); };
     ul.append(el("li", {}, `${inv.email} (${PAPEL[inv.role] || inv.role}) `, x));
   });

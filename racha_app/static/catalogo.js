@@ -75,12 +75,15 @@ async function toggleAliases(pid, tr) {
     if (!arr.length) list.append("(nenhum) ");
     arr.forEach((a) => {
       const x = el("button", { className: "danger tiny", textContent: "✕" });
+      x.setAttribute("aria-label", "Remover apelido " + a.alias);
       x.onclick = async () => { await jdel("/api/aliases/" + a.id); refresh(); };
       list.append(el("span", { className: "chip" }, a.alias, x), " ");
     });
   };
   const inp = el("input", { placeholder: "novo apelido" });
+  inp.setAttribute("aria-label", "Novo apelido");
   const add = el("button", { textContent: "+" });
+  add.setAttribute("aria-label", "Adicionar apelido");
   add.onclick = async () => {
     if (!inp.value.trim()) return;
     await jpost(`/api/players/${pid}/aliases`, { alias: inp.value }); inp.value = ""; refresh();
