@@ -82,7 +82,7 @@ async function toggleAliases(pid, tr) {
   };
   const inp = el("input", { placeholder: "novo apelido" });
   inp.setAttribute("aria-label", "Novo apelido");
-  const add = el("button", { textContent: "+" });
+  const add = el("button", { className: "icon-btn", textContent: "+" });
   add.setAttribute("aria-label", "Adicionar apelido");
   add.onclick = async () => {
     if (!inp.value.trim()) return;
