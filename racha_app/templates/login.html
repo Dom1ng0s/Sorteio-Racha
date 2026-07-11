@@ -1,0 +1,13 @@
+{% extends "auth_base.html" %}
+{% block title %}Entrar{% endblock %}
+{% block content %}
+<h2>Entrar</h2>
+<form method="post" action="/login" class="stack">
+  <input type="hidden" name="next" value="{{ next }}">
+  <input type="email" name="email" placeholder="E-mail" required autocomplete="email" autofocus>
+  <input type="password" name="password" placeholder="Senha" required autocomplete="current-password">
+  <button type="submit">Entrar</button>
+</form>
+<p><a href="/forgot">Esqueci a senha</a></p>
+<p>Não tem conta? <a href="/signup{% if next %}?next={{ next }}{% endif %}">Cadastre-se</a></p>
+{% endblock %}

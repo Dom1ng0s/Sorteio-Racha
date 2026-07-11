@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Membros{% endblock %}
+{% block content %}
+<h1>Membros</h1>
+
+<div class="scroll">
+  <table id="tabela-membros">
+    <thead><tr><th>E-mail</th><th>Papel</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<section id="convites-sec" hidden>
+  <h2>Convites pendentes</h2>
+  <ul id="lista-convites"></ul>
+
+  <h2>Convidar alguém</h2>
+  <div class="add-row">
+    <input id="conv-email" type="email" placeholder="e-mail do convidado" aria-label="E-mail do convidado">
+    <select id="conv-role" aria-label="Papel">
+      <option value="member" selected>Membro</option>
+      <option value="admin">Admin</option>
+    </select>
+    <button id="btn-convidar">Convidar</button>
+  </div>
+  <p class="hint">O convidado recebe um link por e-mail. Sem provedor de e-mail configurado, o link aparece no log do servidor.</p>
+</section>
+
+<h2>Criar outro racha</h2>
+<div class="add-row">
+  <input id="novo-racha" placeholder="Nome do racha" aria-label="Nome do novo racha">
+  <button id="btn-novo-racha">Criar</button>
+</div>
+{% endblock %}
+{% block script %}<script src="/static/membros.js"></script>{% endblock %}

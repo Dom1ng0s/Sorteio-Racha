@@ -1,0 +1,14 @@
+{% extends "auth_base.html" %}
+{% block title %}Nova senha{% endblock %}
+{% block content %}
+<h2>Nova senha</h2>
+{% if invalido %}
+  <p class="erro">Link inválido ou expirado.</p>
+  <p><a href="/forgot">Pedir outro</a></p>
+{% else %}
+  <form method="post" action="/reset/{{ token }}" class="stack">
+    <input type="password" name="password" placeholder="Nova senha (mín. 8)" required minlength="8" autocomplete="new-password" autofocus>
+    <button type="submit">Salvar senha</button>
+  </form>
+{% endif %}
+{% endblock %}

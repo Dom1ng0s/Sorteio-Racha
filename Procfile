@@ -1,1 +1,1 @@
-web: gunicorn --chdir racha_app app:app --workers 1 --threads 4 --bind 0.0.0.0:$PORT
+web: gunicorn --chdir racha_app app:app --workers 2 --threads 4 --bind 0.0.0.0:$PORT
