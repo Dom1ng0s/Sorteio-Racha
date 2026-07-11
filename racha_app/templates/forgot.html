@@ -1,0 +1,15 @@
+{% extends "auth_base.html" %}
+{% block title %}Redefinir senha{% endblock %}
+{% block content %}
+<h2>Redefinir senha</h2>
+{% if enviado %}
+  <p>Se houver uma conta com esse e-mail, enviamos um link para redefinir a senha.</p>
+  <p><a href="/login">Voltar</a></p>
+{% else %}
+  <form method="post" action="/forgot" class="stack">
+    <input type="email" name="email" placeholder="E-mail" required autocomplete="email" autofocus>
+    <button type="submit">Enviar link</button>
+  </form>
+  <p><a href="/login">Voltar</a></p>
+{% endif %}
+{% endblock %}

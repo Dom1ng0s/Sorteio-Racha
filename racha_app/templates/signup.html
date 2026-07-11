@@ -1,0 +1,12 @@
+{% extends "auth_base.html" %}
+{% block title %}Criar conta{% endblock %}
+{% block content %}
+<h2>Criar conta</h2>
+<form method="post" action="/signup" class="stack">
+  <input type="hidden" name="next" value="{{ next }}">
+  <input type="email" name="email" placeholder="E-mail" required autocomplete="email" autofocus>
+  <input type="password" name="password" placeholder="Senha (mín. 8)" required minlength="8" autocomplete="new-password">
+  <button type="submit">Criar conta</button>
+</form>
+<p>Já tem conta? <a href="/login{% if next %}?next={{ next }}{% endif %}">Entrar</a></p>
+{% endblock %}

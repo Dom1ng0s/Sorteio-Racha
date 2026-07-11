@@ -3,6 +3,7 @@ async function api(method, url, body) {
   const opt = { method, headers: { "Content-Type": "application/json" } };
   if (body !== undefined) opt.body = JSON.stringify(body);
   const r = await fetch(url, opt);
+  if (r.status === 401) { location.href = "/login"; throw new Error("auth"); }
   const data = r.status === 204 ? null : await r.json().catch(() => null);
   if (!r.ok) throw Object.assign(new Error("erro"), { data, status: r.status });
   return data;

@@ -135,6 +135,25 @@ label { font-weight: 600; }
 .field { display: flex; flex-direction: column; gap: .3rem; max-width: 200px; margin: .6rem 0 1rem; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
+/* ---------- nav: usuário / org / sair ---------- */
+nav .nav-right { margin-left: auto; display: flex; align-items: center; gap: .5rem; }
+nav .orgswitch { margin: 0; }
+nav .orgswitch select { min-height: auto; padding: .35rem .5rem; width: auto; max-width: 40vw; }
+nav .whoami { color: rgba(255,255,255,.7); font-size: .8rem; white-space: nowrap; max-width: 22vw; overflow: hidden; text-overflow: ellipsis; }
+nav form.inline { margin: 0; }
+.linkbtn { background: transparent; color: rgba(255,255,255,.82); border: 1px solid rgba(255,255,255,.25); min-height: auto; padding: .35rem .7rem; font-size: .85rem; }
+.linkbtn:hover { background: rgba(255,255,255,.14); }
+
+/* ---------- páginas de auth ---------- */
+body.authpage { min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.authcard { background: var(--surface); box-shadow: var(--shadow-lg); border-radius: var(--radius); padding: 1.6rem 1.4rem; width: 100%; max-width: 360px; }
+.authcard .brand { text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+.authcard .brand::before { content: "⚽ "; }
+.authcard h2 { margin: .2rem 0 1rem; }
+.stack { display: flex; flex-direction: column; gap: .7rem; }
+.stack button { margin-top: .2rem; }
+.hint { color: var(--muted); font-size: .85rem; }
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }

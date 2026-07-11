@@ -13,6 +13,21 @@
     <a href="/mensalistas">Mensalistas</a>
     <a href="/diaristas">Diaristas</a>
     <a href="/sorteio">Sortear</a>
+    <a href="/membros">Membros</a>
+    <span class="nav-right">
+      {% if orgs and orgs|length > 1 %}
+      <form method="post" class="orgswitch" aria-label="Trocar de racha">
+        <select name="oid" aria-label="Racha ativo"
+                onchange="this.form.action='/trocar-org/'+this.value; this.form.submit()">
+          {% for o in orgs %}<option value="{{ o.id }}" {% if o.id==org_id %}selected{% endif %}>{{ o.name }}</option>{% endfor %}
+        </select>
+      </form>
+      {% endif %}
+      {% if user %}<span class="whoami">{{ user.email }}</span>
+      <form method="post" action="/logout" class="inline">
+        <button class="linkbtn" type="submit">Sair</button>
+      </form>{% endif %}
+    </span>
   </nav>
   <main>{% block content %}{% endblock %}</main>
   <script src="/static/app.js"></script>
