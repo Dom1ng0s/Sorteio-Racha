@@ -33,23 +33,25 @@ async function load() {
   });
 }
 
-document.getElementById("btn-convidar").onclick = async () => {
+const btnConvidar = document.getElementById("btn-convidar");
+btnConvidar.onclick = () => busy(btnConvidar, async () => {
   const email = document.getElementById("conv-email").value.trim();
   const role = document.getElementById("conv-role").value;
   if (!email) return;
   try {
     await jpost("/api/org/invites", { email, role });
     document.getElementById("conv-email").value = "";
-    alert("Convite enviado.");
-    load();
-  } catch (e) { alert((e.data && e.data.error) || "Erro ao convidar"); }
-};
+    toast("Convite enviado!", "ok");
+    await load();
+  } catch (e) { toast((e.data && e.data.error) || "Erro ao convidar"); }
+});
 
-document.getElementById("btn-novo-racha").onclick = async () => {
+const btnNovoRacha = document.getElementById("btn-novo-racha");
+btnNovoRacha.onclick = () => busy(btnNovoRacha, async () => {
   const name = document.getElementById("novo-racha").value.trim();
   if (!name) return;
   await jpost("/api/orgs", { name });
   location.reload();  // recarrega com a nova org ativa
-};
+});
 
 load();

@@ -19,6 +19,24 @@ const el = (tag, props = {}, ...kids) => {
   return n;
 };
 
+// notificação flutuante (substitui alert)
+function toast(msg, type = "erro") {
+  let box = document.getElementById("toasts");
+  if (!box) document.body.append((box = el("div", { id: "toasts" })));
+  const t = el("div", { className: "toast " + type, textContent: msg, role: "status" });
+  box.append(t);
+  setTimeout(() => t.remove(), 4000);
+}
+
+// desabilita + mostra spinner enquanto a ação async roda
+async function busy(btn, fn) {
+  const wasDisabled = btn.disabled;
+  btn.disabled = true;
+  btn.classList.add("loading");
+  try { return await fn(); }
+  finally { btn.classList.remove("loading"); btn.disabled = wasDisabled; }
+}
+
 // marca o link de navegação da página atual
 document.querySelectorAll("nav a").forEach((a) => {
   if (a.getAttribute("href") === location.pathname) a.setAttribute("aria-current", "page");

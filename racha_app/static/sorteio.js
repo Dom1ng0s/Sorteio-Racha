@@ -14,15 +14,15 @@ async function validar() {
   document.getElementById("contador").textContent = at.filter((p) => p.present).length;
 }
 
-btn.onclick = async () => {
+btn.onclick = () => busy(btn, async () => {
   try {
     const r = await jpost("/api/sortear", { num_times: +numSel.value, pending_import: pending() === "1" });
     render(r);
   } catch (e) {
-    alert((e.data && e.data.erros || ["erro"]).join("\n"));
+    toast((e.data && e.data.erros || ["Erro ao sortear"]).join(" "));
     validar();
   }
-};
+});
 
 function render(r) {
   const out = document.getElementById("resultado");

@@ -154,6 +154,34 @@ body.authpage { min-height: 100dvh; display: flex; align-items: center; justify-
 .stack button { margin-top: .2rem; }
 .hint { color: var(--muted); font-size: .85rem; }
 
+/* ---------- botão carregando ---------- */
+button.loading { position: relative; color: transparent !important; pointer-events: none; }
+button.loading::after {
+  content: ""; position: absolute; inset: 0; margin: auto;
+  width: 1.15em; height: 1.15em; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.45); border-top-color: #fff;
+  animation: spin .6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- toasts ---------- */
+#toasts {
+  position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; gap: .5rem; z-index: 50;
+  width: min(92vw, 420px); pointer-events: none;
+}
+.toast {
+  padding: .7rem .9rem; border-radius: var(--radius); box-shadow: var(--shadow-lg);
+  font-weight: 600; animation: toastin .2s ease;
+}
+.toast.erro { background: var(--danger-bg); color: var(--danger); }
+.toast.ok { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+@keyframes toastin { from { opacity: 0; transform: translateY(10px); } }
+
+/* ---------- entrada dos cards do sorteio ---------- */
+.times .card { animation: cardin .25s ease both; }
+@keyframes cardin { from { opacity: 0; transform: translateY(10px); } }
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }

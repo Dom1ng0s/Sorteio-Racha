@@ -1,15 +1,18 @@
 let PLAYERS = [];
 let GROUPS = [];
 
-document.getElementById("btn-parse").onclick = async () => {
+const btnParse = document.getElementById("btn-parse");
+btnParse.onclick = () => busy(btnParse, async () => {
   const text = document.getElementById("raw").value;
-  PLAYERS = await jget("/api/players");
-  const res = await jpost("/api/parse-list", { text });
-  GROUPS = res.groups;
-  renderRevisao(res.entries);
-  document.getElementById("revisao").hidden = false;
-  sessionStorage.setItem("pendingImport", "1"); // bloqueia sorteio até aplicar
-};
+  try {
+    PLAYERS = await jget("/api/players");
+    const res = await jpost("/api/parse-list", { text });
+    GROUPS = res.groups;
+    renderRevisao(res.entries);
+    document.getElementById("revisao").hidden = false;
+    sessionStorage.setItem("pendingImport", "1"); // bloqueia sorteio até aplicar
+  } catch (e) { toast("Não consegui processar a lista. Confira o texto colado."); }
+});
 
 function optionsFor(entry) {
   const sel = el("select", { className: "vinculo" });
@@ -48,7 +51,8 @@ function renderRevisao(entries) {
   });
 }
 
-document.getElementById("btn-apply").onclick = async () => {
+const btnApply = document.getElementById("btn-apply");
+btnApply.onclick = () => busy(btnApply, async () => {
   const entries = [...document.querySelectorAll("#tabela tbody tr")].map((tr) => {
     const e = tr._entry, v = tr._sel.value;
     const base = { name: e.name, present: e.present, group: e.group };
@@ -56,7 +60,10 @@ document.getElementById("btn-apply").onclick = async () => {
     if (v === "new") return { ...base, action: "new", stars: +tr._stars.value };
     return { ...base, action: "link", player_id: +v.slice(1), save_alias: tr._alias.checked };
   });
-  await jpost("/api/apply-import", { groups: GROUPS, entries });
-  sessionStorage.removeItem("pendingImport");
-  document.getElementById("apply-msg").textContent = "✅ Presença aplicada!";
-};
+  try {
+    await jpost("/api/apply-import", { groups: GROUPS, entries });
+    sessionStorage.removeItem("pendingImport");
+    document.getElementById("apply-msg").textContent = "✅ Presença aplicada!";
+    toast("Presença aplicada!", "ok");
+  } catch (e) { toast("Falha ao aplicar a presença."); }
+});

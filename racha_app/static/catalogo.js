@@ -93,13 +93,14 @@ async function toggleAliases(pid, tr) {
   tr.after(arow);
 }
 
-document.getElementById("btn-add").onclick = async () => {
+const btnAdd = document.getElementById("btn-add");
+btnAdd.onclick = () => busy(btnAdd, async () => {
   const name = document.getElementById("novo-nome").value.trim();
   const stars = +document.getElementById("novo-stars").value;
   if (!name) return;
-  try { await jpost("/api/players", { name, stars, grupo }); } catch (e) { alert("Nome já existe?"); return; }
+  try { await jpost("/api/players", { name, stars, grupo }); } catch (e) { toast("Esse nome já existe no catálogo."); return; }
   document.getElementById("novo-nome").value = "";
-  load();
-};
+  await load();
+});
 
 load();
